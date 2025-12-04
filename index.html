@@ -1,67 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" 
-    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" 
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-    <title>DW Bootstrap</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <title>DW JavaScript</title>
+  </head>
+  <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary m-0 p-0">
-          <div class="container-fluid bg-info mt-0 p-2">
-            <a class="navbar-brand" href="https://dumbways.id">
-              <img src="img/dw.png" class="logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon text-light"></span>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary m-0 p-0">
+        <div class="container-fluid bg-info mt-0 p-2">
+          <img src="assets/images/ratom.JPG" class="logo" />
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon text-light"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <button
+                  class="nav-link text-light"
+                  aria-current="page"
+                  onclick="home()"
+                >
+                  Home
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link text-light" onclick="project()">
+                  My Project
+                </button>
+              </li>
+            </ul>
+            <button
+              class="btn btn-dark btn-outline-success text-light"
+              onclick="contact()"
+            >
+              Contact Me
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-light" href="project.html">My Project</a>
-                </li>
-              </ul>
-            <a class="btn btn-dark btn-outline-success text-light" href="contact.html">Contact Me</a>
-            </div>
           </div>
-        </nav>
+        </div>
+      </nav>
     </header>
     <main class="d-flex justify-content-center align-content-center">
-      <div class="container row m-5 p-5 bg-light rounded-4 shadow" style="width: 50rem;">
+      <div
+        class="container row m-5 p-5 bg-light rounded-4 shadow"
+        style="width: 50rem"
+      >
         <div class="col-8 d-flex flex-column justify-content-center">
           <h2>Welcome To My Website</h2>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. At dolor itaque eaque rerum veritatis atque repudiandae ipsam eligendi, reiciendis officia? Quis animi reprehenderit odio quia veritatis numquam sunt quae libero?</p>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. At dolor
+            itaque eaque rerum veritatis atque repudiandae ipsam eligendi,
+            reiciendis officia? Quis animi reprehenderit odio quia veritatis
+            numquam sunt quae libero?
+          </p>
           <div class="link">
-            <a class="btn btn-dark text-light mt-3 mb-3 me-3" href="contact.html">Contact</a>
+            <button
+              class="btn btn-dark text-light mt-3 mb-3 me-3"
+              onclick="project()"
+            >
+              Add Project
+            </button>
+            <button class="btn btn-dark text-light me-3" onclick="contact()">
+              Contact
+            </button>
             <label for="download">Download CV</label>
-            <a class="text-black" href="#"><i class="fa-solid fa-download"></i></a>
-            <br>
-            <a class="text-black fs-3" href="https://www.instagram.com/rahmat_tomy"><i class="fa-brands fa-instagram"></i></a>
-            <a class="text-black fs-3" href="https://github.com/tosrv"><i class="fa-brands fa-github"></i></a>
-            <a class="text-black fs-3" href="https://www.youtube.com/@ra-tom"><i class="fa-brands fa-youtube"></i></a>
+            <button class="text-black icon-only" style="font-size: 1.5rem">
+              <i class="fa-solid fa-download"></i>
+            </button>
+            <br />
+            <button class="text-black fs-3 icon-only" onclick="ig()">
+              <i class="fa-brands fa-instagram"></i>
+            </button>
+            <button class="text-black fs-3 icon-only" onclick="yt()">
+              <i class="fa-brands fa-youtube"></i>
+            </button>
+            <button class="text-black fs-3 icon-only" onclick="github()">
+              <i class="fa-brands fa-github"></i>
+            </button>
           </div>
         </div>
         <div class="col-4 d-flex justify-content-center">
-          <div class="card shadow-sm" style="width: 13rem;">
-            <img src="img/profile.jpg" class="card-img-top">
+          <div class="card shadow-sm" style="width: 13rem">
+            <img src="assets/images/profile.jpg" class="card-img-top" />
             <div class="card-body text-center">
               <h3 class="card-text">Rahmat Tomy</h3>
               <p class="card-text">Fullstack Developer</p>
             </div>
-            </div>
+          </div>
         </div>
       </div>
     </main>
-</body>
+  </body>
+  <script src="assets/scripts/script.js"></script>
 </html>

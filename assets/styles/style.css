@@ -1,0 +1,14 @@
+body {
+  background-color: #e2e2e2ff;
+}
+
+.logo {
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 30px;
+}
+
+.icon-only {
+  border: none;
+  background-color: transparent;
+}
