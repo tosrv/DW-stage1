@@ -24,17 +24,16 @@ function github() {
 
 let addProject = document.querySelector("#addProject");
 
-addProject.addEventListener("submit", function(e) {
-    e.preventDefault();
+addProject.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    let projectName = document.querySelector("#projectName").value;
-    let startDate = document.querySelector("#startDate").value;
-    let endDate = document.querySelector("#endDate").value;
-    let description = document.querySelector("#description").value;
-    let projectPhoto = document.querySelector("#projectPhoto").value;
+  let projectName = document.querySelector("#projectName").value;
+  let startDate = document.querySelector("#startDate").value;
+  let endDate = document.querySelector("#endDate").value;
+  let description = document.querySelector("#description").value;
+  let projectPhoto = document.querySelector("#projectPhoto").value;
 
-    console.log(
-        `name: ${projectName}, dimulai: ${startDate}, selesai: ${endDate}, desc: ${description}, file: ${projectPhoto}`
-    );
-    
-})
+  console.log(
+    `name: ${projectName}, dimulai: ${startDate}, selesai: ${endDate}, desc: ${description}, file: ${projectPhoto}`
+  );
+});
