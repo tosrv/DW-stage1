@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <title>DW JavaScript</title>
+  </head>
+  <body>
+    <button class="btn btn-dark text-light m-2" onclick="back()">Back</button>
+    <div class="container bg-light rounded-4 p-5" style="width: 80rem;">
+        <img id="detailFoto" alt="" class="rounded mb-3" style="width: 300px; height: auto;">
+        <h1 id="detailName"></h1>
+        <div class="d-flex gap-2 fw-light" style="font-size: 12px;">
+            <p id="detailStart"></p>   
+            <p id="detailEnd"></p>
+        </div>
+        <p id="detailDesc"></p>
+    </div>
+  </body>
+  <script src="assets/scripts/detail-project.js"></script>
+</html>
