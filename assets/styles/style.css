@@ -1,0 +1,21 @@
+body {
+    background-color: rgb(232, 231, 230);
+}
+
+main {
+    padding: 5rem;
+}
+
+.wrap {
+    padding: 3rem;
+    max-width: 60rem;
+    background-color: white;
+    border-radius: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
