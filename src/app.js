@@ -289,8 +289,4 @@ export const dur = (start, end) => {
   return Math.ceil(diff / (1000 * 60 * 60 * 24));
 };
 
-hbs.registerHelper("activePage", function (page) {
-  return page === this.activePage ? "active" : "";
-});
-
 export default app;
