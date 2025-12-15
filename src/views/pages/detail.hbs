@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="text-center m-3">{{display.name}}</h1>
+  <section class="d-flex justify-content-center gap-5 mb-5">
+    <div>
+      <img src="/assets/images/frontend.png" class="rounded-4" style="width: 50rem; height: auto;">
+    </div>
+    <div class="d-flex align-items-center">
+      <div>
+        <h5>Date</h5>
+        <h6 class="mb-5">{{display.start}} - {{display.end}}</h6>
+        <h5>Duration</h5>
+        <h6 class="mb-5">{{display.duration}} Days</h6>
+        <h5>Technologies</h5>
+        <div class="d-flex gap-5">
+          <div>
+          {{#if tech.node}}<h6>Node JS</h6>{{/if}}
+          {{#if tech.react}}<h6>React JS</h6>{{/if}}
+          </div>
+          <div>
+          {{#if tech.next}}<h6>Next JS</h6>{{/if}}
+          {{#if tech.typescript}}<h6>TypeScript</h6>{{/if}}
+          </div>
+      </div>
+    </div>
+  </section>
+  <div class="container">
+    <p class="m-3">{{display.description}}</p>
+  </div>
+</div>
