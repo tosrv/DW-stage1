@@ -198,11 +198,11 @@ async function del(req, res) {
   const { id } = req.params;
 
   try {
-    const qData = `DELETE FROM project WHERE id = $1`;
     const qTech = `DELETE FROM project_tech WHERE project_id = $1`;
+    const qData = `DELETE FROM project WHERE id = $1`;
 
-    await db.query(qData, [id]);
     await db.query(qTech, [id]);
+    await db.query(qData, [id]);
 
     res.redirect("/project");
   } catch (err) {
