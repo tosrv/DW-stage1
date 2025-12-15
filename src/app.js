@@ -1,4 +1,3 @@
-import { log } from "console";
 import express from "express";
 import hbs from "hbs";
 import path from "path";
