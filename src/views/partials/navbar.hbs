@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-info">
+  <div class="container-fluid">
+    <img
+      src="/assets/images/ratom.JPG"
+      alt="logo"
+      class="rounded-5 me-3"
+      style="width: 3rem; height: auto"
+    />
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar"
+      aria-controls="navbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link fs-5" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" href="/project">My Project</a>
+        </li>
+      </ul>
+      <a class="btn btn-dark me-3" href="/contact">
+        Contact Me
+      </a>
+      {{#if user}}
+        <a class="btn btn-dark" href="/logout">Logout</a>
+      {{else}}
+        <a class="btn btn-dark" href="/login">Login</a>
+      {{/if}}
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,102 @@
+<div
+  class="container mt-5 p-5 rounded-3 d-flex gap-lg-5 shadow"
+  style="max-width: 60rem;"
+>
+  <!-- INTRODUCTION -->
+  <section class="content-1 d-flex flex-column justify-content-center">
+    {{#if user}}
+      <h1>Welcome Back {{user.name}}</h1>
+    {{else}}
+      <h1>Welcome To My Website</h1>
+    {{/if}}
+    <p class="mb-3">
+      I am an aspiring Full-Stack Developer currently sharpening my skills
+      through an intensive coding bootcamp. I’m learning to build complete web
+      applications from front-end design to back-end functionality, while
+      developing strong problem-solving and teamwork abilities.
+    </p>
+
+    <!-- LINK -->
+    <div class="hero-actions">
+      <!-- BUTTON MODAL -->
+      <button
+        type="button"
+        class="btn btn-dark me-3"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+      >
+        Contact
+      </button>
+      <a class="text-decoration-none text-black" href="#">Download CV
+        <i class="fa-solid fa-download"></i></a>
+
+      <div class="social-media mt-3">
+        <a
+          class="fs-2 text-decoration-none text-black"
+          href="https://www.instagram.com/rahmat_tomy"
+        ><i class="fa-brands fa-instagram"></i></a>
+        <a
+          class="fs-2 text-decoration-none text-black"
+          href="https://github.com/tosrv"
+        ><i class="fa-brands fa-github"></i></a>
+        <a
+          class="fs-2 text-decoration-none text-black"
+          href="https://www.youtube.com/@ra-tom"
+        ><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILE -->
+  <section class="content-2">
+    <div class="card shadow-sm" style="width: 18rem">
+      <img
+        src="/assets/images/profile.jpg"
+        class="card-img-top"
+        alt="profile"
+      />
+      <div class="card-body">
+        <h3 class="card-text text-center">Rahmat Tomy</h3>
+        <p class="card-text text-center">Full-Stack Developer</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MODAL -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Contact</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h6 class="mb-0">Phone Number</h6>
+        <p>0851 2345 6789</p>
+        <h6 class="mb-0">Email</h6>
+        <p>rahmattomy@gmail.com</p>
+        <h6 class="mb-0">Address</h6>
+        <p>Magetan, Jawa Timur</p>
+      </div>
+      <div class="modal-footer">
+        <a href="/contact" type="button" class="btn btn-dark">
+          <i class="fa-solid fa-paper-plane"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

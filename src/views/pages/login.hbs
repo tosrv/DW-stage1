@@ -1,0 +1,39 @@
+<div class="container mt-5 p-5 gap-5 rounded-4 shadow-lg" style="width: 30rem;">
+  <h1 class="text-center mb-2">{{subtitle}}</h1>
+  <div style="height: 2rem;">
+    {{#if error}}
+    <p class="text-danger flash">{{error}}</p>
+    {{/if}}
+    {{#if message}}
+    <p class="text-success flash">{{message}}</p>
+    {{/if}}
+  </div>
+  <!-- FORM LOGIN AND REGISTER -->
+  <form action="{{action}}" method="post">
+    <div class="mb-3" style="{{#if login}}display: none;{{/if}}">
+      <label for="nameInput" class="form-label"><b>Name</b></label>
+      <input type="text" class="form-control" id="nameInput" name="name"/>
+    </div>
+    <div class="mb-3">
+      <label for="emailInput" class="form-label"><b>Email address</b></label>
+      <input
+        type="email"
+        class="form-control"
+        id="emailInput"
+        placeholder="name@example.com"
+        name="email"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="passInput" class="form-label"><b>Password</b></label>
+      <input type="password" class="form-control" id="passInput" name="password" required/>
+    </div>
+    {{#if login}}
+    <p>Don't have account yet? <a href="/register" class="text-decoration-none">Register here</a></p>
+    {{/if}}
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-dark">{{btn}}</button>
+    </div>
+  </form>
+</div>

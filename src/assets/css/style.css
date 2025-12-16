@@ -1,0 +1,15 @@
+body {
+  font-family: "Google Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "GRAD" 50;
+}
+
+.project-title {
+  color: black;
+}
+
+.project-title:hover {
+  color: gray;
+}
