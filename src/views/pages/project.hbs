@@ -1,5 +1,5 @@
 <div class="d-flex flex-column">
-  <section>
+  <section {{#if user}}{{else}}style="display: none;"{{/if}}>
     <div
       class="container p-5 gap-5 rounded-4 shadow-lg bgradient"
       style="width: 30rem;"
@@ -7,7 +7,7 @@
       <h1 class="text-center mb-3">{{subtitle}} MY PROJECT</h1>
 
       <!-- FORM INPUT PROJECT -->
-      <form action="{{action}}" method="post">
+      <form action="{{action}}" method="post" enctype="multipart/form-data">
         <div class="mb-3">
           <label for="nameInput" class="form-label"><b>Project Name</b></label>
           <input
@@ -110,6 +110,12 @@
           <label class="form-label mb-2" for="image">
             <b>Upload Image</b>
           </label>
+          {{#if edit}}
+          <div class="d-flex justify-content-center mb-1">
+          <img src="/assets/images/uploads/{{edit.image}}" style="width: 7rem; height: 5rem;">
+          </div>
+          <p class="text-center mb-0">Current image</p>
+          {{/if}}
           <div class="input-group">
             <input
               type="file"
@@ -127,7 +133,7 @@
       </form>
     </div>
   </section>
-  <section class="container-fluid shadow-lg" style="margin-top: 10rem;">
+  <section {{#if user}}class="container-fluid shadow-lg" style="margin-top: 10rem;"{{else}}class="container rounded-3 shadow" style="width: 60rem;"{{/if}}>
     <h1 class="text-center m-5">MY PROJECT</h1>
     <div class="d-flex justify-content-center mb-5">
       <div class="row row-cols-1 row-cols-md-3 g-5" style="width: 55rem;">
@@ -136,22 +142,24 @@
         {{#each card}}
           <div class="col">
             <div
-              class="card h-100 bgradient shadow-lg d-flex justify-content-end"
+              class="card h-100 bgradient shadow d-flex justify-content-end"
             >
-              <img src="/assets/images/frontend.png" class="card-img-top" />
+              <img src="/assets/images/uploads/{{this.image}}" class="card-img-top" />
               <div class="card-body d-flex flex-column justify-content-end">
                 <a
                   href="/detail/{{this.id}}"
                   class="card-title fs-4 text-truncate text-decoration-none project-title"
                 >{{this.name}}</a>
                 <p
-                  class="card-text black text-truncate"
+                  class="card-text black text-truncate mb-0"
                 >{{this.description}}</p>
+                <small class="mb-1">author: {{this.author}}</small>
                 <div class="d-flex justify-content-around">
                   <div>
                     <a
                       href="/project/{{this.id}}/edit"
                       class="btn btn-dark"
+                      {{#if @root.user}}{{else}}style="display: none;"{{/if}}
                     >Edit</a>
                   </div>
                   <form
@@ -160,7 +168,7 @@
                     class="m-0 p-0"
                     onsubmit="return confirm('Are you sure want to delete {{this.name}}?')"
                   >
-                    <button class="btn btn-dark" type="submit">Delete</button>
+                    <button class="btn btn-dark" type="submit" {{#if @root.user}}{{else}}style="display: none;"{{/if}}>Delete</button>
                   </form>
                 </div>
               </div>

@@ -3,8 +3,8 @@
     <img
       src="/assets/images/ratom.JPG"
       alt="logo"
-      class="rounded-5 me-3"
-      style="width: 3rem; height: auto"
+      class="rounded-5 me-3 object-fit-cover"
+      style="width: 3rem; height: 3rem"
     />
     <button
       class="navbar-toggler"
@@ -26,10 +26,10 @@
           <a class="nav-link fs-5" href="/project">My Project</a>
         </li>
       </ul>
-      <a class="btn btn-dark me-3" href="/contact">
-        Contact Me
-      </a>
       {{#if user}}
+        <a class="btn btn-dark me-3" href="/settings">
+          Settings
+        </a>
         <a class="btn btn-dark" href="/logout">Logout</a>
       {{else}}
         <a class="btn btn-dark" href="/login">Login</a>

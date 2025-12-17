@@ -1,0 +1,92 @@
+<div class="container mt-2 p-5 rounded-4 shadow-lg" style="width: 30rem;">
+  <h1 class="text-center mb-3">{{subtitle}}</h1>
+
+  <!-- FORM INPUT HOMEPAGE DATA -->
+  <form action="{{action}}" method="post" enctype="multipart/form-data" {{#if confirm}}onsubmit="return confirm('Are you sure want to delete your account?')"{{/if}}>
+    {{#if display}}
+      <div class="mb-3">
+        <label for="nameInput" class="form-label"><b>Name</b></label>
+        <input
+          type="text"
+          class="form-control"
+          id="nameInput"
+          name="name"
+          value="{{user.name}}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="emailInput" class="form-label"><b>Email</b></label>
+        <input
+          type="email"
+          class="form-control"
+          id="emailInput"
+          name="email"
+          value="{{user.email}}"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="roleInput" class="form-label"><b>Role</b></label>
+        <input type="text" class="form-control" id="roleInput" name="role" />
+      </div>
+      <div class="mb-3">
+        <label for="greetInput" class="form-label"><b>Greeting</b></label>
+        <input type="text" class="form-control" id="greetInput" name="greet" />
+      </div>
+      <div class="mb-3">
+        <label for="introduction" class="form-label"><b>Introduction</b></label>
+        <textarea
+          class="form-control"
+          id="introduction"
+          rows="3"
+          style="resize: none;"
+          name="intro"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label mb-2" for="profileImage">
+          <b>Profile Image</b>
+        </label>
+        <div class="input-group">
+          <input
+            type="file"
+            id="profileImage"
+            class="form-control"
+            aria-label="Upload"
+            name="image"
+          />
+        </div>
+      </div>
+    {{else}}
+      <div style="height: 2rem;">
+        {{#if error}}
+          <p class="text-danger flash">{{error}}</p>
+        {{/if}}
+      </div>
+      <p>Confirm email and password to delete your account.</p>
+      <div class="mb-3">
+        <label for="emailInput" class="form-label"><b>Email</b></label>
+        <input
+          type="email"
+          class="form-control"
+          id="emailInput"
+          name="email"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="passInput" class="form-label"><b>Password</b></label>
+        <input
+          type="password"
+          class="form-control"
+          id="passInput"
+          name="password"
+        />
+      </div>
+    {{/if}}
+    <div class="d-flex justify-content-end">
+      {{#if display}}
+        <a href="/deleteuser" class="btn btn-dark">Delete User</a>
+      {{/if}}
+      <button type="submit" class="btn btn-dark ms-3">{{btn}}</button>
+    </div>
+  </form>
+</div>

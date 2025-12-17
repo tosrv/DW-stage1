@@ -3,16 +3,15 @@ import hbs from "hbs";
 import path from "path";
 import flash from "connect-flash";
 import session from "express-session";
+import { upload } from "../config/multer.js";
 import {
-  home,
-  contact,
   project,
   addProject,
   detail,
   edit,
   update,
   del,
-} from "../controllers/projectController.js";
+} from "../controllers/projectControl.js";
 import {
   register,
   login,
@@ -20,7 +19,14 @@ import {
   handleLogin,
   logout,
   userData,
-} from "../controllers/authController.js";
+} from "../controllers/authControl.js";
+import {
+  home,
+  settings,
+  updateUser,
+  delPage,
+  delUser,
+} from "../controllers/settingsControl.js";
 
 const app = express();
 
@@ -48,17 +54,20 @@ app.use(userData);
 
 // ROUTES
 app.get("/", home);
-app.get("/contact", contact);
+app.get("/settings", settings);
 app.get("/project", project);
 app.get("/register", register);
 app.get("/login", login);
+app.get("/deleteuser", delPage);
 app.get("/logout", logout);
 app.get("/project/:id/edit", edit);
 app.get("/detail/:id", detail);
 
-app.post("/project", addProject);
+app.post("/project", upload.single("image"), addProject);
+app.post("/project/:id/up", upload.single("image"), update);
+app.post("/settings", upload.single("image"), updateUser);
+app.post("/deleteuser", upload.none(), delUser);
 app.post("/project/:id/del", del);
-app.post("/project/:id/up", update);
 app.post("/register", handleReg);
 app.post("/login", handleLogin);
 

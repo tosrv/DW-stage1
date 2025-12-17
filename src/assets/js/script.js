@@ -14,4 +14,3 @@ if (startDate && endDate) {
 setTimeout(() => {
   document.querySelectorAll(".flash").forEach((el) => el.remove());
 }, 5000);
-

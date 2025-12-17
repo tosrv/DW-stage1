@@ -1,23 +1,26 @@
 import { fDate, disDate, dur } from "../assets/js/helper.js";
 import db from "../config/database.js";
 
-export async function home(req, res) {
+// DISPLAY PROJECT
+export async function project(req, res) {  
+  // RENDER PROJECT CARD
+  let data = [];
+  if (req.session.user) {
+    // FOR LOGIN SESSION THAT WILL ABLE TO ADD, EDIT, DELETE
+    data = await db.query(
+      `SELECT p.id, p.user_id, p.name, p.description, p.image, u.name AS author FROM project p
+       LEFT JOIN public.user u ON p.user_id = u.id WHERE user_id = $1`,
+      [req.session.user.id]
+    );
+  } else {
+    // FOR GUEST SESSION TO DISPLAY ALL PROJECT
+    data = await db.query(
+      `SELECT p.id, p.user_id, p.name, p.description, p.image, u.name AS author FROM project p
+       LEFT JOIN public.user u ON p.user_id = u.id`
+    );
+  }
 
-  res.render("pages/home", {
-    layout: "layouts/main",
-    title: "Home",
-  });
-}
-
-export function contact(req, res) {
-  res.render("pages/contact", {
-    layout: "layouts/main",
-    title: "Contact",
-  });
-}
-
-export async function project(req, res) {
-  const { rows: card } = await db.query(`SELECT * FROM project`);
+  const card = data.rows;
 
   res.render("pages/project", {
     layout: "layouts/main",
@@ -32,14 +35,22 @@ export async function project(req, res) {
 
 // ADD PROJECT
 export async function addProject(req, res) {
+  const userID = req.session.user.id;
   const { name, start, end, desc, tech } = req.body;
-  try {
-    const qData = `INSERT INTO project
-      (name, start, "end", description)
-      VALUES ($1, $2, $3, $4)
-      RETURNING id`;
-    const data = await db.query(qData, [name, start, end, desc]);
+  let image = "frontend.png";
+  if (req.file) {
+    image = req.file.filename;
+  }
 
+  try {
+    // INSERT DATA INPUT
+    const qData = `INSERT INTO project
+      (user_id, name, start, "end", description, image)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING id`;
+    const data = await db.query(qData, [userID, name, start, end, desc, image]);
+
+    // FOR CHECKBOX DATA
     const projectID = data.rows[0].id;
     if (tech) {
       const techs = Array.isArray(tech) ? tech : [tech];
@@ -68,11 +79,22 @@ export async function addProject(req, res) {
 export async function detail(req, res) {
   const { id } = req.params;
   try {
-    const qData = `SELECT * FROM project WHERE id = $1`;
-    const qTech = `SELECT * FROM project_tech WHERE project_id = $1`;
+    // DISPLAY PROJECT DATA
+    const qData = `SELECT name, start, "end", description, image FROM project WHERE id = $1`;
+    const qTech = `SELECT tech_id FROM project_tech WHERE project_id = $1`;
 
     const dataDetail = await db.query(qData, [id]);
     const { rows: dataTech } = await db.query(qTech, [id]);
+
+    if (dataDetail.rowCount === 0) {
+      return res.status(404).render("pages/error", {
+        layout: "layouts/main",
+        title: "Error",
+        status: "404",
+        message: "Project Not Found",
+      });
+    }
+
     const data = dataDetail.rows[0];
     const tech = dataTech.map((t) => t.tech_id);
 
@@ -109,9 +131,9 @@ export async function detail(req, res) {
 export async function edit(req, res) {
   const { id } = req.params;
   try {
-    const qCard = `SELECT * FROM project`;
-    const qTech = `SELECT * FROM project_tech WHERE project_id = $1`;
-    const qEdit = `SELECT * FROM project WHERE id = $1`;
+    const qCard = `SELECT id, name, description, image FROM project`; // RENDER CARD
+    const qTech = `SELECT tech_id FROM project_tech WHERE project_id = $1`; // GET CHECKBOX DATA
+    const qEdit = `SELECT id, name, start, "end", description, image FROM project WHERE id = $1`; // GET INPUT DATA
 
     const { rows: card } = await db.query(qCard);
     const { rows: dataTech } = await db.query(qTech, [id]);
@@ -120,6 +142,7 @@ export async function edit(req, res) {
     const tech = dataTech.map((t) => t.tech_id);
     const edit = dataEdit.rows[0];
 
+    // IF DATA DOESN'T EXIST SEND ERROR
     if (!edit)
       return res.status(404).render("pages/error", {
         layout: "layouts/main",
@@ -128,6 +151,7 @@ export async function edit(req, res) {
         message: "Project Not Found",
       });
 
+    // FORMATING DATE FOR INPUT DISPLAY
     edit.start = fDate(edit.start);
     edit.end = fDate(edit.end);
 
@@ -161,14 +185,20 @@ export async function edit(req, res) {
 export async function update(req, res) {
   const { name, start, end, desc, tech } = req.body;
   const { id } = req.params;
+  let image = "frontend.png";
+  if (req.file) {
+    image = req.file.filename;
+  }
   try {
     await db.query("BEGIN");
 
+    // SEND UPDATED DATA
     const qData = `UPDATE project
-      SET name=$1, start=$2, "end"=$3, description=$4
-      WHERE id = $5`;
-    await db.query(qData, [name, start, end, desc, id]);
+      SET name=$1, start=$2, "end"=$3, description=$4, image=$5
+      WHERE id = $6`;
+    await db.query(qData, [name, start, end, desc, image, id]);
 
+    // REASSIGN CHECKBOX
     const qTech = `DELETE FROM project_tech WHERE project_id = $1`;
     await db.query(qTech, [id]);
 
@@ -202,14 +232,17 @@ export async function del(req, res) {
   const { id } = req.params;
 
   try {
-    const qTech = `DELETE FROM project_tech WHERE project_id = $1`;
-    const qData = `DELETE FROM project WHERE id = $1`;
+    await db.query("BEGIN");
+    const qTech = `DELETE FROM project_tech WHERE project_id = $1`; // DELETE SELECTED DATA CHECKBOX
+    const qData = `DELETE FROM project WHERE id = $1`; // DELETE SELECTED DATA
 
     await db.query(qTech, [id]);
     await db.query(qData, [id]);
 
+    await db.query("COMMIT");
     res.redirect("/project");
   } catch (err) {
+    await db.query("ROLLBACK");
     console.error(err);
     res.status(500).render("pages/error", {
       layout: "layouts/main",
