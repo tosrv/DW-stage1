@@ -2,7 +2,7 @@ import { fDate, disDate, dur } from "../assets/js/helper.js";
 import db from "../config/database.js";
 
 // DISPLAY PROJECT
-export async function project(req, res) {  
+export async function project(req, res) {
   // RENDER PROJECT CARD
   let data = [];
   if (req.session.user) {
@@ -131,11 +131,28 @@ export async function detail(req, res) {
 export async function edit(req, res) {
   const { id } = req.params;
   try {
-    const qCard = `SELECT id, name, description, image FROM project`; // RENDER CARD
+    // RENDER CARD
+    let data = [];
+    if (req.session.user) {
+      // FOR LOGIN SESSION THAT WILL ABLE TO ADD, EDIT, DELETE
+      data = await db.query(
+        `SELECT p.id, p.user_id, p.name, p.description, p.image, u.name AS author FROM project p
+       LEFT JOIN public.user u ON p.user_id = u.id WHERE user_id = $1`,
+        [req.session.user.id]
+      );
+    } else {
+      // FOR GUEST SESSION TO DISPLAY ALL PROJECT
+      data = await db.query(
+        `SELECT p.id, p.user_id, p.name, p.description, p.image, u.name AS author FROM project p
+       LEFT JOIN public.user u ON p.user_id = u.id`
+      );
+    }
+
+    const card = data.rows;
+
     const qTech = `SELECT tech_id FROM project_tech WHERE project_id = $1`; // GET CHECKBOX DATA
     const qEdit = `SELECT id, name, start, "end", description, image FROM project WHERE id = $1`; // GET INPUT DATA
 
-    const { rows: card } = await db.query(qCard);
     const { rows: dataTech } = await db.query(qTech, [id]);
     const dataEdit = await db.query(qEdit, [id]);
 
